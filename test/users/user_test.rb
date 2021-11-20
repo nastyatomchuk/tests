@@ -11,7 +11,7 @@ class UserTest < Minitest::Test
     assert_equal('Ivan Ivanov', User.new('Ivan', 'Ivanov').full_name)
   end
 
-  def test_positive_full_name_string
+  def test_positive_full_name_is_string
     assert_instance_of(String, User.new('Ivan', 'Ivanov').full_name)
   end
 
