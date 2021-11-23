@@ -3,41 +3,75 @@ require './spec/spec_helper.rb'
 require_relative '../../lib/users/user'
 
 describe User do
-    describe 'full_name cases' do
-      it 'returns full_name' do
-      expect(User.new.full_name).to eql('Ivan Petroff')
-      end
 
-      it 'returns enter_full_name' do
-        expect(User.new('Ivan', 'Ivanov').full_name).to eql('Ivan Ivanov')
-      end
+  context "new user" do
+    let (:full_name){ 'Ivan Petroff' }
+    let(:user) { User.new }
 
-      it 'returns string type' do
-      expect(User.new.full_name).to be_instance_of(String)
-      end
-
-      it 'test_default_first_name' do
-        user = User.new()
-        expect(user.first_name).to eql('Ivan')
-      end
-
-      it 'test_default_last_name' do
-        user = User.new()
-        expect(user.last_name).to eql('Petroff')
-      end
-
-      it 'test_first_name' do
-        user = User.new('Petya', 'Petroff')
-        expect(user.first_name).to eql('Petya')
-      end
-
-      it 'test_last_name' do
-        user = User.new('Petya', 'Petroff')
-        expect(user.last_name).to eql('Petroff')
-      end
-
-      it 'test_length_full_name' do
-        expect(User.new('Ivan', 'Ivanov').full_name.length - 1).to eql(10)
-      end
+    it "makes a user with name Ivan Petrov" do
+      expect(user.full_name).to eql(full_name)
     end
+  end
+
+  context "new user with full name" do
+    let (:full_name){ 'Ivan Ivanov' }
+    let(:user) { User.new('Ivan', 'Ivanov') }
+
+    it "makes a user with name Ivan Ivanov" do
+      expect(user.full_name).to eql(full_name)
+    end
+  end
+
+  context "full name is string" do
+    let(:user) { User.new('Ivan', 'Ivanov') }
+
+    it "returns string type" do
+      expect(user.full_name).to be_instance_of(String)
+    end
+  end
+
+  context "default user first name " do
+    let (:first_name){ 'Ivan' }
+    let(:user) { User.new }
+
+    it "returns default user first name" do
+      expect(user.first_name).to eql(first_name)
+    end
+  end
+
+  context "default user last name " do
+    let (:first_name){ 'Petroff' }
+    let(:user) { User.new }
+
+    it "returns default user last name" do
+      expect(user.last_name).to eql(first_name)
+    end
+  end
+
+  context "user last name " do
+    let (:first_name){ 'Petya' }
+    let(:user) { User.new('Petya', 'Petroff') }
+
+    it "returns user last name" do
+      expect(user.first_name).to eql(first_name)
+    end
+  end
+
+  context "user last name " do
+    let (:last_name){ 'Petroff' }
+    let(:user) { User.new('Petya', 'Petroff') }
+
+    it "returns user last name" do
+      expect(user.last_name).to eql(last_name)
+    end
+  end
+
+  context "full name length" do
+    let (:count){ 12 }
+    let(:user) { User.new('Petya', 'Petroff') }
+
+    it "returns the number of characters in the full name " do
+      expect(user.full_name.length - 1).to eql(count)
+    end
+  end
 end
