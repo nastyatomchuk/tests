@@ -3,6 +3,7 @@ require 'minitest/autorun'
 require_relative '../../lib/users/user'
 
 class UserTest < Minitest::Test
+
   def test_positive_full_name_initialize
      assert_equal('Ivan Petroff', User.new.full_name)
   end

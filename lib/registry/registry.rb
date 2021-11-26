@@ -41,20 +41,3 @@ class DuplicateFilesRegistry
 
   attr_reader :files, :duplicate_files
 end
-
-
-registry = DuplicateFilesRegistry.new
-data_path = File.expand_path('../../data/2.jpg', __dir__)
-digester = Digest::SHA1.hexdigest(data_path)
-registry.add_file(digester, data_path)
-
-data_path = File.expand_path('../../data/3.jpg', __dir__)
-digester = Digest::SHA1.hexdigest(data_path)
-registry.add_file(digester, data_path)
-
-puts registry.digests
-puts registry.grouped_files
-puts registry.group_by(digester.to_s.to_i)
-puts registry.each
-puts registry.empty?
-puts registry.uniq_files_count
