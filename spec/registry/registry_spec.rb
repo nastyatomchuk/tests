@@ -1,5 +1,6 @@
 require 'rspec'
-require './spec/spec_helper.rb'
+require_relative '../../spec/spec_helper'
+# require 'spec/spec_helper'
 require_relative '../../lib/registry/registry'
 
 describe DuplicateFilesRegistry do

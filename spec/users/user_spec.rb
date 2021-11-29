@@ -1,6 +1,10 @@
 require 'rspec'
-require './spec/spec_helper.rb'
+
+require_relative '../../spec/spec_helper'
+
+# require './spec/spec_helper'ls
 require_relative '../../lib/users/user'
+
 
 describe User do
 
