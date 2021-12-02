@@ -39,4 +39,9 @@ class OneFileRegistryTest < Minitest::Test
 
     assert_equal([[@data_path], [data_path2]], @registry.grouped_files)
   end
+
+  def test_registry_each_returns_correct_value
+    assert_equal({@digest=>[@data_path]}, @registry.each{ |duplicates| puts duplicates })
+  end
+
 end
