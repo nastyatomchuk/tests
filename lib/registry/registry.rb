@@ -1,5 +1,3 @@
-require_relative '../../lib/registry/sha1_digester'
-
 class DuplicateFilesRegistry
   def initialize
     @files = []
