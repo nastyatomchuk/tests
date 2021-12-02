@@ -2,7 +2,21 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="128046b2-b852-423f-80c0-e064a6242f5f" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/lib/users/user.rb" beforeDir="false" afterPath="$PROJECT_DIR$/lib/users/user.rb" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Rakefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gemfile.lock" beforeDir="false" afterPath="$PROJECT_DIR$/Gemfile.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/2.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/22.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/222.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/23.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/3.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/34.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/data/4.jpg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/registry/sha1_digester.rb" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/registry/registry_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/registry/registry_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/spec/users/user_spec.rb" beforeDir="false" afterPath="$PROJECT_DIR$/spec/users/user_spec.rb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/test/test_helper.rb" beforeDir="false" afterPath="$PROJECT_DIR$/test/test_helper.rb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +68,7 @@
       <recent name="C:\Users\Sad_7400\apps\tests" />
     </key>
   </component>
-  <component name="RunManager" selected="Ruby.user_test">
+  <component name="RunManager" selected="Ruby.registry_spec">
     <configuration type="TestUnitRunConfigurationType" factoryName="Test::Unit/Shoulda/Minitest" temporary="true" nameIsGenerated="true">
       <module name="tests" />
       <predefined_log_file enabled="true" id="RUBY_TESTUNIT" />
@@ -155,8 +169,8 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Ruby.user_test" />
         <item itemvalue="Ruby.registry_spec" />
+        <item itemvalue="Ruby.user_test" />
         <item itemvalue="Ruby.user_spec" />
         <item itemvalue="Ruby.registry" />
       </list>
@@ -192,7 +206,7 @@
       <workItem from="1638284053562" duration="10232000" />
       <workItem from="1638344844634" duration="6088000" />
       <workItem from="1638433526413" duration="2793000" />
-      <workItem from="1638449400477" duration="2484000" />
+      <workItem from="1638449400477" duration="6251000" />
     </task>
     <servers />
   </component>
@@ -255,7 +269,7 @@
     <SUITE FILE_PATH="coverage/tests@user_spec.rcov" NAME="user_spec Coverage Results" MODIFIED="1638178439506" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spec/users" />
     <SUITE FILE_PATH="coverage/tests@User_full_name_length.rcov" NAME="User full name length Coverage Results" MODIFIED="1637686475191" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tests" />
     <SUITE FILE_PATH="coverage/tests@test_positive_digests_is_array.rcov" NAME="test_positive_digests_is_array Coverage Results" MODIFIED="1637354315703" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tests" />
-    <SUITE FILE_PATH="coverage/tests@registry_spec.rcov" NAME="registry_spec Coverage Results" MODIFIED="1638178557883" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spec/registry" />
+    <SUITE FILE_PATH="coverage/tests@registry_spec.rcov" NAME="registry_spec Coverage Results" MODIFIED="1638464627673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/spec/registry" />
     <SUITE FILE_PATH="coverage/tests@registry.rcov" NAME="registry Coverage Results" MODIFIED="1637960044365" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/lib/registry" MODULE_NAME="tests" />
     <SUITE FILE_PATH="coverage/tests@test_positive_grouped_files.rcov" NAME="test_positive_grouped_files Coverage Results" MODIFIED="1637355022160" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" MODULE_NAME="tests" />
     <SUITE FILE_PATH="coverage/tests@registry_test.rcov" NAME="registry_test Coverage Results" MODIFIED="1638178214920" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/test/registry" />
