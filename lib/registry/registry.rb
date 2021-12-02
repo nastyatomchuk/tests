@@ -15,11 +15,11 @@ class DuplicateFilesRegistry
   end
 
   def group_by(digest)
-    grouped_files[digest]
+    duplicate_files[digest]
   end
 
   def each
-    duplicate_files.each_value { |duplicates| yield duplicates }
+    duplicate_files.each_value { |duplicates| yield(duplicates) }
   end
 
   def empty?
