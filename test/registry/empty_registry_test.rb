@@ -29,4 +29,17 @@ class EmptyRegistryTest < Minitest::Test
     @registry.add_file(digest, data_path)
     assert_equal([[data_path]], @registry.grouped_files)
   end
+
+  def test_registry_each_returns_correct_value
+    assert_block_calls(0) do |counter_block|
+      @registry.each(&counter_block)
+    end
+  end
+
+  def assert_block_calls(times)
+    count = 0
+    counter_block = ->(arg) { count += 1 }
+    yield(counter_block)
+    assert_equal(times, count)
+  end
 end

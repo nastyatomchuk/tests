@@ -41,7 +41,15 @@ class OneFileRegistryTest < Minitest::Test
   end
 
   def test_registry_each_returns_correct_value
-    assert_equal({@digest=>[@data_path]}, @registry.each{ |duplicates| puts duplicates })
+    assert_block_calls(1) do |counter_block|
+      @registry.each(&counter_block)
+    end
   end
 
+  def assert_block_calls(times)
+    count = 0
+    counter_block = ->(arg) { count += 1 }
+    yield(counter_block)
+    assert_equal(times, count)
+  end
 end

@@ -42,4 +42,17 @@ class ManyFilesRegistryTest < Minitest::Test
 
     assert_equal([[@data_path1], [@data_path2], [data_path3]], @registry.grouped_files)
   end
+
+  def test_registry_each_returns_correct_value
+    assert_block_calls(2) do |counter_block|
+      @registry.each(&counter_block)
+    end
+  end
+
+  def assert_block_calls(times)
+    count = 0
+    counter_block = ->(arg) { count += 1 }
+    yield(counter_block)
+    assert_equal(times, count)
+  end
 end
