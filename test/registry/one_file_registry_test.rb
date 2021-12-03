@@ -1,7 +1,9 @@
 require 'test_helper'
 require 'registry/registry'
+require 'support/assertions'
 
 class OneFileRegistryTest < Minitest::Test
+  include EachMethodTest
 
   def setup
     @registry = DuplicateFilesRegistry.new
@@ -30,26 +32,28 @@ class OneFileRegistryTest < Minitest::Test
     assert_equal([@data_path],  @registry.group_by(@digest))
   end
 
-  def test_add_file_to_registry_with_one_file
-    assert_equal([[@data_path]], @registry.grouped_files)
-
+  def test_add_file_to_registry_when_unduplicate_file_added
     data_path2 = 'data/23.jpg'
     digest = 'abc12eaafda365cf8b805fed05d6ccb04bddca917'
     @registry.add_file(digest, data_path2)
 
     assert_equal([[@data_path], [data_path2]], @registry.grouped_files)
+    assert_equal([@digest, digest], @registry.digests)
+    assert_equal(2, @registry.uniq_files_count)
+  end
+
+  def test_add_file_to_registry_when_duplicate_file_added
+    data_path2 = 'data/23.jpg'
+    @registry.add_file(@digest, data_path2)
+
+    assert_equal([[@data_path, data_path2]], @registry.grouped_files)
+    assert_equal([@digest], @registry.digests)
+    assert_equal(1, @registry.uniq_files_count)
   end
 
   def test_registry_each_returns_correct_value
     assert_block_calls(1) do |counter_block|
       @registry.each(&counter_block)
     end
-  end
-
-  def assert_block_calls(times)
-    count = 0
-    counter_block = ->(arg) { count += 1 }
-    yield(counter_block)
-    assert_equal(times, count)
   end
 end

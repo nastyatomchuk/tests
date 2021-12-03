@@ -1,7 +1,9 @@
 require 'test_helper'
 require 'registry/registry'
+require 'support/assertions'
 
 class EmptyRegistryTest < Minitest::Test
+  include EachMethodTest
 
   def setup
     @registry = DuplicateFilesRegistry.new
@@ -28,18 +30,13 @@ class EmptyRegistryTest < Minitest::Test
     digest = 'c815eaafda365cf8b805fed05d6ccb04bddca917'
     @registry.add_file(digest, data_path)
     assert_equal([[data_path]], @registry.grouped_files)
+    assert_equal([digest], @registry.digests)
+    assert_equal(1, @registry.uniq_files_count)
   end
 
   def test_registry_each_returns_correct_value
     assert_block_calls(0) do |counter_block|
       @registry.each(&counter_block)
     end
-  end
-
-  def assert_block_calls(times)
-    count = 0
-    counter_block = ->(arg) { count += 1 }
-    yield(counter_block)
-    assert_equal(times, count)
   end
 end
