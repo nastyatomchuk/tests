@@ -66,9 +66,17 @@ describe User do
   end
 
   context "user last name " do
-    let(:user) { User.new('', '') }
+    let(:user) { User.new(nil, nil) }
 
     it "raises argument error when nil names provided" do
+      expect{ user.full_name }.to raise_error(ArgumentError)
+    end
+  end
+
+  context "user last name " do
+    let(:user) { User.new(nil, 'Petrov') }
+
+    it "raises argument error when nil first name provided" do
       expect{ user.full_name }.to raise_error(ArgumentError)
     end
   end

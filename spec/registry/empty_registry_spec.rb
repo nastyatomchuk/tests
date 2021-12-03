@@ -45,9 +45,15 @@ describe DuplicateFilesRegistry do
     let(:digest ) { 'c815eaafda365cf8b805fed05d6ccb04bddca917' }
     let(:grouped_files) { [[data_path]] }
 
-    it "add file in empty registry" do
+    it "adds file in empty registry" do
       @registry.add_file(digest, data_path)
       expect(@registry.grouped_files).to eql(grouped_files)
+    end
+  end
+
+  context "each" do
+    xit "returns correct value" do
+      expect { |b| @registry.each(&b) }.to eql(0)
     end
   end
 end
