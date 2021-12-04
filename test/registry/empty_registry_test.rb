@@ -29,7 +29,7 @@ class EmptyRegistryTest < Minitest::Test
     data_path = 'data/22.jpg'
     digest = 'c815eaafda365cf8b805fed05d6ccb04bddca917'
     @registry.add_file(digest, data_path)
-    
+
     assert_equal([[data_path]], @registry.grouped_files)
     assert_equal([digest], @registry.digests)
     assert_equal(1, @registry.uniq_files_count)
