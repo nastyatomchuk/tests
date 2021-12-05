@@ -1,4 +1,3 @@
-require 'rspec'
 require 'spec_helper'
 require 'registry/registry'
 require 'support/assertions'
