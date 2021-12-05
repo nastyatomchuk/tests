@@ -1,9 +1,7 @@
 require 'spec_helper'
 require 'registry/registry'
-require 'support/assertions'
 
 describe DuplicateFilesRegistry do
-  include EachMethodTest
 
   before do
     @registry = DuplicateFilesRegistry.new
@@ -76,9 +74,9 @@ describe DuplicateFilesRegistry do
 
   context "each" do
     it "returns correct value" do
-      assert_block_calls(1) do |counter_block|
-        @registry.each(&counter_block)
-      end
+      yielded = []
+      @registry.each do |e| yielded << e end
+      expect(yielded.count).to eq(1)
     end
   end
 end
