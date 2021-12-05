@@ -1,8 +1,10 @@
 require 'rspec'
 require 'spec_helper'
 require 'registry/registry'
+require 'support/assertions'
 
 describe DuplicateFilesRegistry do
+  include EachMethodTest
 
   before do
     @registry = DuplicateFilesRegistry.new
@@ -48,12 +50,16 @@ describe DuplicateFilesRegistry do
     it "adds file in empty registry" do
       @registry.add_file(digest, data_path)
       expect(@registry.grouped_files).to eql(grouped_files)
+      expect(@registry.digests).to eql([digest])
+      expect(@registry.uniq_files_count).to eql(1)
     end
   end
 
   context "each" do
-    xit "returns correct value" do
-      expect { |b| @registry.each(&b) }.to eql(0)
+    it "returns correct value" do
+      assert_block_calls(0) do |counter_block|
+        @registry.each(&counter_block)
+      end
     end
   end
 end

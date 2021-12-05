@@ -1,8 +1,10 @@
 require 'rspec'
 require 'spec_helper'
 require 'registry/registry'
+require 'support/assertions'
 
 describe DuplicateFilesRegistry do
+  include EachMethodTest
 
   before do
     @registry = DuplicateFilesRegistry.new
@@ -44,19 +46,40 @@ describe DuplicateFilesRegistry do
   end
 
   context "add file" do
-    let(:data_path2 ) { 'data/23.jpg' }
-    let(:digest2 ) { '1234eaafda365cf8b805fed05d6ccb04bddca666' }
-    let(:grouped_files) { [[@data_path1], [data_path2]] }
+    let(:data_path3 ) { 'data/24.jpg' }
+    let(:digest3 ) { '5678eaafda365cf8b805fed05d6ccb04bddca123' }
+    let(:grouped_files) { [[@data_path1], [data_path3]] }
+    let(:digests) { [@digest1, digest3] }
+    let(:uniq_files_count) { 2 }
 
-    it "add file in registry with one file" do
-      @registry.add_file(digest2, data_path2)
+    it "adds unduplicate file in registry with one file" do
+      @registry.add_file(digest3, data_path3)
       expect(@registry.grouped_files).to eql(grouped_files)
+      expect(@registry.digests).to eql(digests)
+      expect(@registry.uniq_files_count).to eql(uniq_files_count)
+    end
+  end
+
+  context "add file" do
+    let(:data_path3 ) { 'data/24.jpg' }
+    let(:digest3 ) { 'c815eaafda365cf8b805fed05d6ccb04bddca917' }
+    let(:grouped_files) { [[@data_path1, data_path3]] }
+    let(:digests) { [@digest1] }
+    let(:uniq_files_count) { 1 }
+
+    it "adds duplicate file in registry with one file" do
+      @registry.add_file(digest3, data_path3)
+      expect(@registry.grouped_files).to eql(grouped_files)
+      expect(@registry.digests).to eql(digests)
+      expect(@registry.uniq_files_count).to eql(uniq_files_count)
     end
   end
 
   context "each" do
     it "returns correct value" do
-      expect { |b| @registry.each(&b) }.to yield_successive_args([@data_path1])
+      assert_block_calls(1) do |counter_block|
+        @registry.each(&counter_block)
+      end
     end
   end
 end
