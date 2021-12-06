@@ -1,8 +1,8 @@
-require 'rspec/core/rake_task'
+require 'rake/testtask'
 
-RSpec::Core::RakeTask.new do |task|
-  task.pattern = 'spec/**/*_spec.rb'
-  task.rspec_opts = '--format documentation'
+Rake::TestTask.new do |task|
+  task.libs << %w(test lib)
+  task.pattern = 'test/**/*_test.rb'
 end
 
-task :default => :spec
+task :default => :test
