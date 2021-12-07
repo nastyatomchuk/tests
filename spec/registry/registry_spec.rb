@@ -98,7 +98,7 @@ describe DuplicateFilesRegistry do
     end
   end
 
-  context "with one file registered" do
+  context "with many file registered" do
     let(:data_path1) { 'data/22.jpg' }
     let(:digest1) { 'c815eaafda365cf8b805fed05d6ccb04bddca917' }
     let(:data_path2) { 'data/24.jpg' }
@@ -114,11 +114,11 @@ describe DuplicateFilesRegistry do
       subject.add_file(digest2, data_path2)
     end
 
-    it "has one digest" do
+    it "has many digest" do
       expect([digest1, digest2] - subject.digests).to be_empty
     end
 
-    it "has one grouped file" do
+    it "has many grouped file" do
       expect([[data_path1], [data_path2]] - subject.grouped_files).to be_empty
     end
 
