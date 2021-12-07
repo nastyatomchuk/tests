@@ -16,11 +16,11 @@ describe DuplicateFilesRegistry do
     end
 
     it "is empty" do
-      expect(subject.empty?).to eql(true)
+      expect(subject).to be_empty
     end
 
     it "returns 0 uniq files count" do
-      expect(subject.uniq_files_count).to eql(0)
+      expect(subject.uniq_files_count).to be_zero
     end
 
     it "can add file" do
@@ -57,8 +57,8 @@ describe DuplicateFilesRegistry do
       expect(subject.grouped_files).to eql([[data_path1]])
     end
 
-    it "in`t empty" do
-      expect(subject.empty?).to eql(false)
+    it "isn`t empty" do
+      expect(subject).to_not be_empty
     end
 
     it "returns 1 uniq files count" do
@@ -69,36 +69,51 @@ describe DuplicateFilesRegistry do
       expect { |b| subject.each(&b) }.to yield_control.exactly(1).times
     end
 
-    context "when unduplicate file added" do
-      it "changes uniq file count" do
-        expect { subject.add_file(digest2, data_path2) }.to change { subject.uniq_files_count }.from(1).to(2)
+    context "when unduplicated file added" do
+      it "changes digests" do
+        expect do
+          subject.add_file(digest2, data_path2)
+        end.to change { subject.digests }.from([digest1])
+                                         .to([digest1, digest2])
       end
 
       it "changes grouped files" do
-        expect { subject.add_file(digest2, data_path2) }.to change { subject.grouped_files }.from([[data_path1]]).to([[data_path1], [data_path2]])
+        expect do
+          subject.add_file(digest2, data_path2)
+        end.to change { subject.grouped_files }.from([[data_path1]])
+                                               .to([[data_path1], [data_path2]])
       end
 
       it "changes uniq file count" do
-        expect { subject.add_file(digest2, data_path2) }.to change { subject.digests }.from([digest1]).to([digest1, digest2])
+        expect do
+          subject.add_file(digest2, data_path2)
+        end.to change { subject.uniq_files_count }.from(1).to(2)
       end
     end
 
-    context "when duplicate file added" do
-      it "changes uniq file count" do
-        expect { subject.add_file(digest1, data_path2) }.not_to change { subject.uniq_files_count }
+    context "when duplicated file added" do
+      it "doesn`t change digests" do
+        expect do
+          subject.add_file(digest1, data_path2)
+        end.not_to change { subject.digests }
       end
 
       it "changes grouped files" do
-        expect { subject.add_file(digest1, data_path2) }.to change { subject.grouped_files }.from([[data_path1]]).to([[data_path1, data_path2]])
+        expect do
+          subject.add_file(digest1, data_path2)
+        end.to change { subject.grouped_files }.from([[data_path1]])
+                                               .to([[data_path1, data_path2]])
       end
 
-      it "changes uniq file count" do
-        expect { subject.add_file(digest1, data_path2) }.not_to change { subject.digests }
+      it "doesn`t change uniq file count" do
+        expect do
+          subject.add_file(digest1, data_path2)
+        end.not_to change { subject.uniq_files_count }
       end
     end
   end
 
-  context "with many file registered" do
+  context "with many files registered" do
     let(:data_path1) { 'data/22.jpg' }
     let(:digest1) { 'c815eaafda365cf8b805fed05d6ccb04bddca917' }
     let(:data_path2) { 'data/24.jpg' }
@@ -115,18 +130,18 @@ describe DuplicateFilesRegistry do
     end
 
     it "has many digest" do
-      expect([digest1, digest2] - subject.digests).to be_empty
+      expect(subject.digests).to match_array([digest1, digest2])
     end
 
     it "has many grouped file" do
-      expect([[data_path1], [data_path2]] - subject.grouped_files).to be_empty
+      expect(subject.grouped_files).to match_array([[data_path1], [data_path2]])
     end
 
-    it "in`t empty" do
-      expect(subject.empty?).to eql(false)
+    it "isn`t empty" do
+      expect(subject).to_not be_empty
     end
 
-    it "returns 1 uniq files count" do
+    it "returns 2 uniq files count" do
       expect(subject.uniq_files_count).to eql(2)
     end
 
@@ -134,31 +149,46 @@ describe DuplicateFilesRegistry do
       expect { |b| subject.each(&b) }.to yield_control.exactly(2).times
     end
 
-    context "when unduplicate file added" do
-      it "changes uniq file count" do
-        expect { subject.add_file(digest3, data_path3) }.to change { subject.uniq_files_count }.from(2).to(3)
+    context "when unduplicated file added" do
+      it "changes digests" do
+        expect do
+          subject.add_file(digest3, data_path3)
+        end.to change { subject.digests }.from([digest1, digest2])
+                                         .to([digest1, digest2, digest3])
       end
 
       it "changes grouped files" do
-        expect { subject.add_file(digest3, data_path3) }.to change { subject.grouped_files }.from([[data_path1], [data_path2]]).to([[data_path1], [data_path2], [data_path3] ])
+        expect do
+          subject.add_file(digest3, data_path3)
+        end.to change { subject.grouped_files }.from([[data_path1], [data_path2]])
+                                               .to([[data_path1], [data_path2], [data_path3] ])
       end
 
       it "changes uniq file count" do
-        expect { subject.add_file(digest3, data_path3) }.to change { subject.digests }.from([digest1, digest2]).to([digest1, digest2, digest3])
+        expect do
+          subject.add_file(digest3, data_path3)
+        end.to change { subject.uniq_files_count }.from(2).to(3)
       end
     end
 
-    context "when duplicate file added" do
-      it "changes uniq file count" do
-        expect { subject.add_file(digest2, data_path3) }.not_to change { subject.uniq_files_count }
+    context "when duplicated file added" do
+      it "doesn`t change digests" do
+        expect do
+          subject.add_file(digest2, data_path3)
+        end.not_to change { subject.digests }
       end
 
       it "changes grouped files" do
-        expect { subject.add_file(digest2, data_path3) }.to change { subject.grouped_files }.from([[data_path1], [data_path2]]).to([[data_path1], [data_path2, data_path3]])
+        expect do
+          subject.add_file(digest2, data_path3)
+        end.to change { subject.grouped_files }.from([[data_path1], [data_path2]])
+                                               .to([[data_path1], [data_path2, data_path3]])
       end
 
-      it "changes uniq file count" do
-        expect { subject.add_file(digest2, data_path3) }.not_to change { subject.digests }
+      it "doesn`t change uniq file count" do
+        expect do
+          subject.add_file(digest2, data_path3)
+        end.not_to change { subject.uniq_files_count }
       end
     end
   end
